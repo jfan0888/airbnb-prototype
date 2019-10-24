@@ -1,6 +1,14 @@
+@import './mixins.scss';
 @import './fonts.scss';
 @import './base.scss';
 @import './responsive.scss';
+
+// Components
+@import './components/loading.scss';
+
+// Containers
+@import './containers/login.scss';
+@import './containers/main.scss';
 
 .app-container {
   position: relative;

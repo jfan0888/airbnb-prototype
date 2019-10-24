@@ -4,7 +4,7 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'RedHatText', 'Arial', 'Helvetica', 'sans-serif';
+  font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
 }
 
 html,
@@ -46,4 +46,33 @@ body {
 
 .text-align-right {
   text-align: right !important;
+}
+
+.btn {
+  border: 1px solid $secondaryColor;
+  background: transparent;
+  padding: 5px 40px;
+  font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: $secondaryColor;
+  cursor: pointer;
+  outline: none !important;
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.text-link {
+  text-decoration: none;
+  color: $secondaryColor;
+  cursor: pointer;
+}
+
+.comment-text {
+  color: $primaryColor;
+  font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
 }

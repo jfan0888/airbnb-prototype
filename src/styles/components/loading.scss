@@ -1,0 +1,21 @@
+.loading-component {
+  .dot-item {
+    margin: 0 5px;
+    font-size: 16px;
+    color: $secondaryColor;
+  }
+
+  &.large {
+    .dot-item {
+      margin: 0 14px;
+      font-size: 48px;
+    }
+  }
+
+  &.center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
