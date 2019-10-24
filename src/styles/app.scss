@@ -1,0 +1,10 @@
+@import './fonts.scss';
+@import './base.scss';
+@import './responsive.scss';
+
+.app-container {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  background: #000;
+}
