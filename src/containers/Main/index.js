@@ -2,35 +2,44 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { Loading, Button } from '../../components';
+
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+  }
 
-    componentDidMount() {
-        //
-    }
+  componentDidMount() {
+    //
+  }
 
-    componentWillReceiveProps(nextProps) {
-        //
-    }
+  componentWillReceiveProps(nextProps) {
+    //
+  }
 
-    render() {
-        return (
-            <div>main</div>
-        );
-    }
+  render() {
+    const { loading } = this.state;
+
+    return (
+      <div className="main-container">
+        <div className="page-content d-flex flex-column align-items-center">
+          {loading ? <Loading position="center" size="large" /> : null}
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({});
 
-})
+const mapDispatchToProps = dispatch => ({});
 
-const mapDispatchToProps = dispatch => ({
-
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Main)
+);
