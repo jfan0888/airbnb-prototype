@@ -1,7 +1,14 @@
 {
   "extends": "react-app",
-  "plugins": ["prettier"],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "indent": [
+      2,
+      "tab"
+    ],
+    "no-tabs": 0
   }
 }
