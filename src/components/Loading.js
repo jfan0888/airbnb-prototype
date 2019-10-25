@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Dot } from 'react-animated-dots';
 
 const Loading = ({ size, position }) => (
   <div className={`loading-component ${size} ${position}`}>
     <Dot className="dot-item">
-      <FontAwesome name="circle" />
+      <FontAwesomeIcon icon={faCircle} />
     </Dot>
     <Dot className="dot-item">
-      <FontAwesome name="circle" />
+      <FontAwesomeIcon icon={faCircle} />
     </Dot>
     <Dot className="dot-item">
-      <FontAwesome name="circle" />
+      <FontAwesomeIcon icon={faCircle} />
     </Dot>
   </div>
 );
