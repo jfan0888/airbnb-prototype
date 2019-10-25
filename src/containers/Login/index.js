@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 
 import { Loading, Button } from '../../components';
 
@@ -22,9 +23,11 @@ class Login extends React.Component {
     //
   }
 
-  pressLogin = () => {
-    this.setState({ loading: true });
-    setTimeout(() => this.props.history.push('/main'), 3000);
+  responseGoogle = res => {
+    if (!res.details) {
+      this.setState({ loading: true });
+      setTimeout(() => this.props.history.push('/main'), 3000);
+    }
   };
 
   render() {
@@ -40,9 +43,16 @@ class Login extends React.Component {
             Visualization Suite
           </p>
           {!loading ? (
-            <Button
-              title="login using your @gmail.com account"
-              clickHanlder={this.pressLogin}
+            <GoogleLogin
+              clientId="708661734955-k7p04rqdobaa8e6hlol6pj0i60s90j9d.apps.googleusercontent.com"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              render={props => (
+                <Button
+                  title="login using your @gmail.com account"
+                  clickHanlder={props.onClick}
+                />
+              )}
             />
           ) : (
             <>
