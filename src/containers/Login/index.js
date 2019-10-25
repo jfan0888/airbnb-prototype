@@ -49,7 +49,7 @@ class Login extends React.Component {
               onFailure={this.responseGoogle}
               render={props => (
                 <Button
-                  title="login using your @gmail.com account"
+                  title="login using your @email.com account"
                   clickHanlder={props.onClick}
                 />
               )}
