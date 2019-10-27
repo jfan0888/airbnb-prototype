@@ -21,6 +21,7 @@ const StyledThumb = styled.div`
   cursor: grab;
   bottom: -12.5px;
   font-size: 10px;
+  z-index: 0 !important;
 `;
 
 const Thumb = (props, state) => (
