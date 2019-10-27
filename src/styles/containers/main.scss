@@ -3,11 +3,13 @@
   overflow: hidden;
   position: relative;
 
+  .page-content {
+    flex: 1;
+  }
+
   .page-footer {
     width: 100%;
-    position: absolute;
-    bottom: 24px;
-    padding: 0 80px;
+    padding: 24px 80px;
 
     .date-range-wrapper {
       margin-top: 24px;
