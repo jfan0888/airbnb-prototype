@@ -34,7 +34,7 @@ class Main extends React.Component {
     const { loading, openLeftSidebar, openRightSidebar } = this.state;
 
     return (
-      <div className="main-container">
+      <div className="main-container d-flex flex-column">
         <div className="sidebar-wrapper">
           <Sidebar
             type="left"
@@ -48,7 +48,11 @@ class Main extends React.Component {
           />
         </div>
         <div className="page-content d-flex flex-column align-items-center">
-          {loading ? <Loading position="center" size="large" /> : null}
+          {loading ? (
+            <Loading position="center" size="large" />
+          ) : (
+            <div id="map" />
+          )}
         </div>
         <div className="page-footer">
           <Slider />
