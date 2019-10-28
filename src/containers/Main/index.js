@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Loading, Slider, DateInput, Sidebar } from '../../components';
+import LeftSidebarContent from './LeftSidebarContent';
+import RightSidebarContent from './RightSidebarContent';
 
 class Main extends React.Component {
   constructor(props) {
@@ -40,12 +42,20 @@ class Main extends React.Component {
             type="left"
             open={openLeftSidebar}
             toggleHandler={this.openLeftSidebar}
-          />
+          >
+            <LeftSidebarContent
+              closeHandler={() => this.openLeftSidebar(false)}
+            />
+          </Sidebar>
           <Sidebar
             type="right"
             open={openRightSidebar}
             toggleHandler={this.openRightSidebar}
-          />
+          >
+            <RightSidebarContent
+              closeHandler={() => this.openRightSidebar(false)}
+            />
+          </Sidebar>
         </div>
         <div className="page-content d-flex flex-column align-items-center">
           {loading ? (
@@ -55,7 +65,7 @@ class Main extends React.Component {
           )}
         </div>
         <div className="page-footer">
-          <Slider />
+          <Slider defaultValue={[30, 75]} />
           <div className="date-range-wrapper d-flex">
             <div className="start-date">
               <DateInput />
