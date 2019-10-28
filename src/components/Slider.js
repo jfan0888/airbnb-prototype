@@ -39,13 +39,17 @@ const StyledTrack = styled.div`
 `;
 
 const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
+const SingleTrack = (props, state) => <StyledTrack {...props} index={1} />;
 
-const Slider = props => (
-  <StyledSlider
-    defaultValue={[50, 75]}
-    renderTrack={Track}
-    renderThumb={Thumb}
-  />
-);
+const Slider = ({ single, defaultValue }) =>
+  single ? (
+    <StyledSlider renderTrack={SingleTrack} renderThumb={Thumb} />
+  ) : (
+    <StyledSlider
+      defaultValue={defaultValue}
+      renderTrack={Track}
+      renderThumb={Thumb}
+    />
+  );
 
 export default Slider;
