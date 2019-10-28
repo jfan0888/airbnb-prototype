@@ -1,13 +1,14 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
-import SidebarToggle from './SidebarToggle';
 
-const CustomSidebar = ({ open, type, toggleHandler }) => (
+import SidebarToggle from '../SidebarToggle';
+
+const CustomSidebar = ({ open, type, toggleHandler, children }) => (
   <Sidebar
-    sidebar={<div className="sidebar-content">{type} Sidebar Content</div>}
+    sidebarClassName="sidebar-wrapper"
+    sidebar={children}
     open={open}
     onSetOpen={toggleHandler}
-    styles={{ sidebar: { background: 'white' } }}
     pullRight={type === 'right' ? true : false}
   >
     <SidebarToggle type={type} clickHanlder={() => toggleHandler(true)} />
