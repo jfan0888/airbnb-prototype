@@ -23,7 +23,9 @@ const LeftSidebarContent = props => (
       <div className="filter-item">
         <label className="label">Node size</label>
         <Slider single />
-        <div className="value-box number">3</div>
+        <div className="data-range">
+          <div className="value-box number">3</div>
+        </div>
       </div>
     </div>
     <div className="close-button-wrapper">
