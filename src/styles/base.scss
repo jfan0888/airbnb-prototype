@@ -49,15 +49,18 @@ body {
 }
 
 .btn {
-  border: 1px solid $secondaryColor;
-  background: transparent;
-  padding: 5px 40px;
   font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 14px;
-  color: $secondaryColor;
   cursor: pointer;
   outline: none !important;
+
+  &.outline {
+    border: 1px solid $secondaryColor;
+    background: transparent;
+    padding: 5px 40px;
+    color: $secondaryColor;
+  }
 
   &:active {
     opacity: 0.5;
@@ -75,4 +78,21 @@ body {
   font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
+}
+
+.data-range {
+  display: flex;
+  align-items: center;
+
+  .value-box {
+    border-radius: 1px;
+    border: 1px solid rgb(114, 114, 114);
+    color: #727272;
+    padding: 0 11px;
+
+    &.number {
+      display: inline-block;
+      line-height: 40px;
+    }
+  }
 }
