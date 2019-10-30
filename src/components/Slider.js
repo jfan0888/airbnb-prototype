@@ -41,14 +41,21 @@ const StyledTrack = styled.div`
 const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
 const SingleTrack = (props, state) => <StyledTrack {...props} index={1} />;
 
-const Slider = ({ single, defaultValue }) =>
+const Slider = ({ single, defaultValue, ...props }) =>
   single ? (
-    <StyledSlider renderTrack={SingleTrack} renderThumb={Thumb} />
+    <StyledSlider
+      {...props}
+      renderTrack={SingleTrack}
+      renderThumb={Thumb}
+      onAfterChange={props.updateHandler}
+    />
   ) : (
     <StyledSlider
+      {...props}
       defaultValue={defaultValue}
       renderTrack={Track}
       renderThumb={Thumb}
+      onAfterChange={props.updateHandler}
     />
   );
 
