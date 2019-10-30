@@ -5,19 +5,53 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import Slider from '../Slider';
 
-const DataRange = ({ caption, defaultValue, startValue, endValue }) => (
-  <div className="filter-item">
-    <label className="label">{caption}</label>
-    <Slider defaultValue={defaultValue} />
-    <div className="data-range">
-      <div className="value-box number">{startValue}</div>
-      <span className="range-sign">
-        <FontAwesomeIcon icon={faMinus} />
-      </span>
-      <div className="value-box number">{endValue}</div>
-    </div>
-  </div>
-);
+class DataRange extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      startValue: null,
+      endValue: null,
+    };
+  }
+
+  componentDidMount() {
+    const { defaultValue } = this.props;
+    this.setState({ startValue: defaultValue[0], endValue: defaultValue[1] });
+  }
+
+  updateHandler = value => {
+    this.setState({ startValue: value[0], endValue: value[1] });
+  };
+
+  render() {
+    const { caption, mask, defaultValue, ...otherProps } = this.props;
+    const { startValue, endValue } = this.state;
+
+    return (
+      <div className="filter-item">
+        <h4 className="label">{caption}</h4>
+        <Slider
+          {...otherProps}
+          defaultValue={defaultValue}
+          updateHandler={this.updateHandler}
+        />
+        <div className="data-range">
+          <div className="value-box number">
+            {mask ? <span className="mask-text">{mask}</span> : null}
+            {startValue}
+          </div>
+          <span className="range-sign">
+            <FontAwesomeIcon icon={faMinus} />
+          </span>
+          <div className="value-box number">
+            {mask ? <span className="mask-text">{mask}</span> : null}
+            {endValue}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 DataRange.propTypes = {
   caption: PropTypes.string,
