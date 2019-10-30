@@ -7,6 +7,7 @@ import Sidebar from './Sidebar';
 import Dropdown from './Dropdown';
 import TabBar from './TabBar';
 import DataRange from './DataRange';
+import ThemeButton from './ThemeButton';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Dropdown,
   TabBar,
   DataRange,
+  ThemeButton,
 };
