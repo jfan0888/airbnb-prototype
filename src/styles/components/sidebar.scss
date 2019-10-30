@@ -24,10 +24,6 @@
         margin-bottom: 35px;
 
         .label {
-          display: inline-block;
-          font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
-          font-size: 16px;
-          font-weight: 500;
           margin-bottom: 24px;
         }
       }
@@ -103,6 +99,10 @@
     .filter-settings {
       &.perception,
       &.attributes {
+        .btn {
+          margin-right: 16px;
+        }
+
         .data-range {
           margin-top: 26px;
 
@@ -118,6 +118,29 @@
           &.single {
             max-width: 160px;
           }
+        }
+      }
+      &.themes {
+        .theme-category {
+          margin-bottom: 29px;
+
+          .label {
+            line-height: 47px;
+            margin-bottom: 8px;
+          }
+
+          .theme-button {
+            margin-bottom: 12px;
+          }
+        }
+      }
+
+      .accomodation-types-wrapper,
+      .house-rules-wrapper {
+        margin-bottom: 32px;
+
+        .label {
+          margin-bottom: 19px;
         }
       }
     }

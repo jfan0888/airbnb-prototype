@@ -9,22 +9,26 @@ const LeftSidebarContent = props => (
     <div className="main">
       <h4 className="title">Display</h4>
       <div className="filter-item">
-        <label className="label">Display Type</label>
+        <h4 className="label">Display Type</h4>
         <Dropdown />
       </div>
       <div className="filter-item">
-        <label className="label">X-axis</label>
+        <h4 className="label">X-axis</h4>
         <Dropdown />
       </div>
       <div className="filter-item">
-        <label className="label">Y-axis</label>
+        <h4 className="label">Y-axis</h4>
         <Dropdown />
       </div>
       <div className="filter-item">
-        <label className="label">Node size</label>
-        <Slider single />
+        <h4 className="label">Node size</h4>
+        <Slider
+          single
+          defaultValue={props.nodeSize}
+          updateHandler={props.handleChangeNodeSize}
+        />
         <div className="data-range">
-          <div className="value-box number">3</div>
+          <div className="value-box number">{props.nodeSize}</div>
         </div>
       </div>
     </div>

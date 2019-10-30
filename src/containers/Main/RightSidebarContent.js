@@ -7,12 +7,13 @@ import { TabBar } from '../../components';
 
 import Perception from './PerceptionSettings';
 import Attributes from './AttributesSettings';
+import Themes from './ThemeSettings';
 
 class RightSidebarContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'Perception',
+      activeTab: 'Themes',
     };
   }
 
@@ -28,6 +29,8 @@ class RightSidebarContent extends React.Component {
         return <Perception />;
       case 'Attributes':
         return <Attributes />;
+      case 'Themes':
+        return <Themes />;
       default:
         return null;
     }

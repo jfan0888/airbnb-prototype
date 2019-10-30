@@ -49,13 +49,31 @@ body {
 }
 
 .btn {
-  font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
   outline: none !important;
 
+  &.primary {
+    font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
+    background: transparent;
+    border: 1px solid $greyBorderColor;
+    padding: 7px 25px;
+    color: $primaryColor;
+    border-radius: 3px;
+  }
+
+  &.secondary {
+    font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
+    background: $secondaryColor;
+    border: 1px solid $secondaryColor;
+    padding: 7px 20px;
+    color: $whiteColor;
+    border-radius: 3px;
+  }
+
   &.outline {
+    font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
     border: 1px solid $secondaryColor;
     background: transparent;
     padding: 5px 40px;
@@ -86,13 +104,33 @@ body {
 
   .value-box {
     border-radius: 1px;
-    border: 1px solid rgb(114, 114, 114);
+    border: 1px solid $greyBorderColor;
     color: #727272;
     padding: 0 11px;
+    font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    .mask-text {
+      margin-right: 5px;
+    }
 
     &.number {
       display: inline-block;
       line-height: 40px;
     }
   }
+}
+
+h4.label {
+  display: inline-block;
+  font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+h3.label {
+  display: inline-block;
+  font-family: 'AirbnbCereal-Bold', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
 }
