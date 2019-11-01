@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Toggle from './Toggle';
 
-const ThemeButton = ({ clickHanlder, caption, active }) => (
-  <div
-    className={`theme-button d-flex align-items-center${
-      active ? ' active' : ' normal'
-    }`}
-    onClick={clickHanlder}
-  >
-    <div className="caption">{caption}</div>
+const ThemeButton = ({ caption, value, active }) => (
+  <div className="theme-button d-flex align-items-center">
+    <div className="caption">
+      {caption}
+      <span>{value}</span>
+    </div>
     <a className="move-to">
-      <FontAwesomeIcon icon={faChevronRight} />
+      <Toggle value={active} />
     </a>
   </div>
 );
