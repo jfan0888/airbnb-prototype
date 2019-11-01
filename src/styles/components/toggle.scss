@@ -1,0 +1,103 @@
+.toggle-button {
+  -webkit-appearance: none !important;
+  height: 32px !important;
+  width: 50px !important;
+  background-color: #f2f2f2 !important;
+  position: relative !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  border-radius: 32px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgb(235, 235, 235) !important;
+  margin: auto !important;
+  outline: none !important;
+
+  &:focus {
+    box-shadow: 0 0 2px 2px #008489 !important;
+  }
+
+  .filter {
+    position: absolute !important;
+    left: -1px !important;
+    top: -1px !important;
+    bottom: -1px !important;
+    right: -1px !important;
+    background-color: $secondaryColor !important;
+    display: inherit !important;
+    transition-property: opacity !important;
+    transition-duration: 250ms !important;
+    transition-timing-function: ease-in-out !important;
+    opacity: 1 !important;
+    border-radius: 32px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgb(0, 132, 137) !important;
+  }
+
+  .mark-wrapper {
+    width: var(--size-switch-size, 32px) !important;
+    height: var(--size-switch-size, 32px) !important;
+    background-color: #ffffff !important;
+
+    &.active {
+      color: #008489 !important;
+      display: block !important;
+      transition-property: -ms-transform, -webkit-transform, transform !important;
+      transition-duration: 250ms !important;
+      transition-timing-function: ease-in-out !important;
+      position: absolute !important;
+      top: -1px !important;
+      left: -1px !important;
+      transform: translate3d(18px, 0px, 0px) !important;
+      border-radius: 50% !important;
+      border-width: 1px !important;
+      border-style: solid !important;
+      overflow: hidden !important;
+      border-color: rgb(0, 132, 137) !important;
+    }
+
+    &.disable {
+      color: #484848;
+      display: block !important;
+      transition-property: -ms-transform, -webkit-transform, transform !important;
+      transition-duration: 250ms !important;
+      transition-timing-function: ease-in-out !important;
+      position: absolute !important;
+      top: -1px !important;
+      left: -1px !important;
+      transform: translate3d(0px, 0px, 0px) !important;
+      border-radius: 50% !important;
+      border-width: 1px !important;
+      border-style: solid !important;
+      border-color: rgb(235, 235, 235) !important;
+      overflow: hidden !important;
+    }
+
+    .check {
+      position: absolute !important;
+      top: 0px !important;
+      left: 0px !important;
+      right: 0px !important;
+      bottom: 0px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close {
+      position: absolute !important;
+      top: 0px !important;
+      left: 0px !important;
+      right: 0px !important;
+      bottom: 0px !important;
+      transform: rotate(45deg) !important;
+      transition-property: -ms-transform, -webkit-transform, transform !important;
+      transition-delay: 62.5ms !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
