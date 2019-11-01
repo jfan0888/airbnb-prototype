@@ -1,9 +1,8 @@
 import React from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { TabBar } from '../../components';
+import { TabBar, Button } from '../../components';
 
 import Perception from './PerceptionSettings';
 import Attributes from './AttributesSettings';
@@ -41,21 +40,22 @@ class RightSidebarContent extends React.Component {
 
     return (
       <div className="sidebar-content right">
-        <div className="close-button-wrapper">
-          <a className="button" onClick={this.props.closeHandler}>
+        <div className="close-button-wrapper" onClick={this.props.closeHandler}>
+          <a className="button">
             <FontAwesomeIcon icon={faTimes} />
           </a>
         </div>
-        <div className="main">
+        <div className="d-flex flex-column main">
           <h4 className="title">Filters</h4>
           <TabBar
             items={['Themes', 'Attributes', 'Perception']}
             activeTab={activeTab}
             onSelect={this.switchTab}
           />
-          <Scrollbars style={{ height: '80%' }}>
-            <div className="tab-content">{this.renderSettings()}</div>
-          </Scrollbars>
+          <div className="flex-1">{this.renderSettings()}</div>
+          <div className="anlaysis-wrapper">
+            <Button type="action" title="Run Analysis" />
+          </div>
         </div>
       </div>
     );

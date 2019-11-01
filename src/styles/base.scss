@@ -12,6 +12,25 @@ body {
   height: 100%;
 }
 
+button {
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  box-sizing: border-box;
+  margin: 0em;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+}
+
 .position-relative {
   position: relative !important;
 }
@@ -22,6 +41,10 @@ body {
 
 .d-flex {
   display: flex !important;
+}
+
+.flex-1 {
+  flex: 1 !important;
 }
 
 .flex-column {
@@ -80,8 +103,19 @@ body {
     color: $secondaryColor;
   }
 
-  &:active {
-    opacity: 0.5;
+  &.action {
+    font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
+    background: $activeColor;
+    border: 1px solid $activeColor;
+    padding: 7px 20px;
+    color: $whiteColor;
+    border-radius: 3px;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px #717171,
+      0 0 0 6px rgba(255, 255, 255, 0.5) !important;
+    transition: box-shadow 0.2s ease !important;
   }
 }
 

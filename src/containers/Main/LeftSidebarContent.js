@@ -32,8 +32,8 @@ const LeftSidebarContent = props => (
         </div>
       </div>
     </div>
-    <div className="close-button-wrapper">
-      <a className="button" onClick={props.closeHandler}>
+    <div className="close-button-wrapper" onClick={props.closeHandler}>
+      <a className="button">
         <FontAwesomeIcon icon={faTimes} />
       </a>
     </div>

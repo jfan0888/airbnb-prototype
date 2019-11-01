@@ -1,31 +1,61 @@
 import React from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { ThemeButton } from '../../components';
 
 class Themes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      sortType: 'sign',
+    };
   }
 
+  changeSortType = value => {
+    this.setState({ sortType: value });
+  };
+
   render() {
+    const { sortType } = this.state;
+
     return (
       <div className="filter-settings themes">
         <div className="theme-category">
-          <h3 className="label">Positive</h3>
-          <ThemeButton active caption="Theme Name 52%" />
-          <ThemeButton caption="Theme Name 37%" />
-          <ThemeButton caption="Theme Name 12%" />
-          <ThemeButton caption="Theme Name 8%" />
-          <ThemeButton caption="Theme Name 2%" />
-        </div>
-        <div className="theme-category">
-          <h3 className="label">Negative</h3>
-          <ThemeButton caption="Theme Name 45%" />
-          <ThemeButton caption="Theme Name 23%" />
-          <ThemeButton caption="Theme Name 6%" />
-          <ThemeButton caption="Theme Name 3%" />
-          <ThemeButton caption="Theme Name 2%" />
+          <div className="header">
+            <h3 className="label">Themes</h3>
+            <div className="sort-wrapper">
+              <span>Sorted by</span>
+              <div className="buttons-wrapper">
+                <div
+                  className={`sort-type-button${
+                    sortType === 'sign' ? ' active' : ''
+                  }`}
+                  onClick={() => this.changeSortType('sign')}
+                >
+                  Signifincance
+                </div>
+                <div
+                  className={`sort-type-button${
+                    sortType === 'sent' ? ' active' : ''
+                  }`}
+                  onClick={() => this.changeSortType('sent')}
+                >
+                  Sentiment
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content flex-1">
+            <Scrollbars>
+              <ThemeButton caption="Theme_Name" value="34%" />
+              <ThemeButton active caption="Theme_Name" value="33%" />
+              <ThemeButton caption="Theme_Name" value="32%" />
+              <ThemeButton caption="Theme_Name" value="29%" />
+              <ThemeButton active caption="Theme_Name" value="27%" />
+              <ThemeButton caption="Theme_Name" value="25%" />
+              <ThemeButton caption="Theme_Name" value="21%" />
+            </Scrollbars>
+          </div>
         </div>
       </div>
     );
