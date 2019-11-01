@@ -8,6 +8,7 @@ import Dropdown from './Dropdown';
 import TabBar from './TabBar';
 import DataRange from './DataRange';
 import ThemeButton from './ThemeButton';
+import Toggle from './Toggle';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   TabBar,
   DataRange,
   ThemeButton,
+  Toggle,
 };
