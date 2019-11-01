@@ -64,7 +64,7 @@ class Login extends React.Component {
         </div>
         <div className="footer">
           <p className="text-align-center">Need Help?</p>
-          <a className="text-link">support@guage.io</a>
+          <a className="text-link">support@gauge.io</a>
         </div>
       </div>
     );
