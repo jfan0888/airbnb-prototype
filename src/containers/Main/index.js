@@ -1,21 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ReactMapboxGl, { Marker, Cluster, Popup } from 'react-mapbox-gl';
+import ReactMapboxGl, {
+  Marker,
+  Cluster,
+  Popup,
+  ZoomControl,
+} from 'react-mapbox-gl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Loading, Slider, DateInput, Sidebar } from '../../components';
-import { mapboxToken } from '../../config';
+import { mapboxToken, centerPosition } from '../../config';
 
 import LeftSidebarContent from './LeftSidebarContent';
 import RightSidebarContent from './RightSidebarContent';
-const falls = require('./falls.json');
 
+const falls = require('./falls.json');
 const styles = {
   marker: {
-    minWidth: 20,
-    minHeight: 20,
+    minWidth: 30,
+    minHeight: 30,
     borderRadius: '50%',
     backgroundColor: '#EF5B48',
     display: 'flex',
@@ -45,7 +50,7 @@ class Main extends React.Component {
       nodeSize: 3,
       popup: undefined,
     };
-    this.zoom = [2];
+    this.zoom = [3];
   }
 
   componentDidMount() {
@@ -148,7 +153,10 @@ class Main extends React.Component {
             onStyleLoad={this.onStyleLoad}
             onMove={this.onMove}
             renderChildrenInPortal
+            center={centerPosition}
+            maxZoom={12}
           >
+            {/* <ZoomControl position="bottom-left" /> */}
             <Cluster ClusterMarkerFactory={this.clusterMarker}>
               {falls.features.map((feature, key) => (
                 <Marker
