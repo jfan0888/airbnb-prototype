@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import { Loading, Button } from '../../components';
+import { googleClinetId } from '../../config';
 
 const Logo = require('../../assets/icons/logo.svg');
 
@@ -44,7 +45,7 @@ class Login extends React.Component {
           </p>
           {!loading ? (
             <GoogleLogin
-              clientId="708661734955-k7p04rqdobaa8e6hlol6pj0i60s90j9d.apps.googleusercontent.com"
+              clientId={googleClinetId}
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
               render={props => (
