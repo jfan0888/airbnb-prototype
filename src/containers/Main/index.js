@@ -49,12 +49,13 @@ class Main extends React.Component {
       openRightSidebar: false,
       nodeSize: 3,
       popup: undefined,
+      center: null,
     };
     this.zoom = [3];
   }
 
   componentDidMount() {
-    //
+    this.setState({ center: centerPosition });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -116,6 +117,7 @@ class Main extends React.Component {
       openRightSidebar,
       nodeSize,
       popup,
+      center,
     } = this.state;
 
     return (
@@ -153,7 +155,7 @@ class Main extends React.Component {
             onStyleLoad={this.onStyleLoad}
             onMove={this.onMove}
             renderChildrenInPortal
-            center={centerPosition}
+            center={center || centerPosition}
             maxZoom={12}
           >
             {/* <ZoomControl position="bottom-left" /> */}
@@ -164,6 +166,9 @@ class Main extends React.Component {
                   style={styles.marker}
                   coordinates={feature.geometry.coordinates}
                   data-feature={feature}
+                  onClick={evt =>
+                    this.setState({ center: feature.geometry.coordinates })
+                  }
                 >
                   <div title={feature.properties.name}>
                     {feature.properties.name[0]}
