@@ -7,21 +7,41 @@ class Attributes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accomodationType: 'entire',
-      houseRule: 'pet',
+      accomodationTypes: ['entire'],
+      houseRules: ['pet'],
     };
   }
 
   setAccomodationType = value => {
-    this.setState({ accomodationType: value });
+    this.setState(prevState => {
+      let newAccomodationTypes = prevState.accomodationTypes;
+
+      if (newAccomodationTypes.includes(value)) {
+        newAccomodationTypes.splice(newAccomodationTypes.indexOf(value), 1);
+      } else {
+        newAccomodationTypes.push(value);
+      }
+
+      return { accomodationTypes: newAccomodationTypes };
+    });
   };
 
   setHouseRule = value => {
-    this.setState({ houseRule: value });
+    this.setState(prevState => {
+      let newHouseRules = prevState.houseRules;
+
+      if (newHouseRules.includes(value)) {
+        newHouseRules.splice(newHouseRules.indexOf(value), 1);
+      } else {
+        newHouseRules.push(value);
+      }
+
+      return { houseRules: newHouseRules };
+    });
   };
 
   render() {
-    const { accomodationType, houseRule } = this.state;
+    const { accomodationTypes, houseRules } = this.state;
 
     return (
       <Scrollbars>
@@ -32,13 +52,19 @@ class Attributes extends React.Component {
               <div>
                 <Button
                   title="Entire Home"
-                  type={accomodationType === 'entire' ? 'secondary' : 'primary'}
+                  type={
+                    accomodationTypes.includes('entire')
+                      ? 'secondary'
+                      : 'primary'
+                  }
                   clickHanlder={() => this.setAccomodationType('entire')}
                 />
                 <Button
                   title="Private Room"
                   type={
-                    accomodationType === 'private' ? 'secondary' : 'primary'
+                    accomodationTypes.includes('private')
+                      ? 'secondary'
+                      : 'primary'
                   }
                   clickHanlder={() => this.setAccomodationType('private')}
                 />
@@ -57,12 +83,14 @@ class Attributes extends React.Component {
               <div>
                 <Button
                   title="Pet Friendly"
-                  type={houseRule === 'pet' ? 'secondary' : 'primary'}
+                  type={houseRules.includes('pet') ? 'secondary' : 'primary'}
                   clickHanlder={() => this.setHouseRule('pet')}
                 />
                 <Button
                   title="Parties allowed"
-                  type={houseRule === 'parties' ? 'secondary' : 'primary'}
+                  type={
+                    houseRules.includes('parties') ? 'secondary' : 'primary'
+                  }
                   clickHanlder={() => this.setHouseRule('parties')}
                 />
               </div>

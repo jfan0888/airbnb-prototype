@@ -20,3 +20,56 @@
     }
   }
 }
+
+// Customize Map View
+
+.mapbox-zoom-control {
+  bottom: 37px !important;
+  z-index: 3 !important;
+}
+
+.map-popup-content {
+  position: relative;
+  width: 455px;
+  background: white;
+  font-weight: 400;
+  color: rgb(103, 103, 103);
+  padding: 5px;
+  border-radius: 2px;
+
+  .title {
+    line-height: 47px;
+    font-size: 32px;
+    font-family: 'AirbnbCereal-Bold';
+    font-weight: bold;
+  }
+
+  .duration {
+    color: rgb(82, 82, 82);
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+
+  .tab-content-wrapper {
+    height: 20vh;
+
+    .content {
+      padding: 20px 20px 0 0;
+      color: rgb(72, 72, 72);
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 0.43px;
+      line-height: 31px;
+    }
+  }
+
+  .map-popup-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 101;
+    cursor: pointer;
+    font-size: 24px;
+  }
+}

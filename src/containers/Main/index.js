@@ -1,16 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ReactMapboxGl, {
-  Marker,
-  Cluster,
-  Popup,
-  ZoomControl,
-} from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, Cluster, ZoomControl } from 'react-mapbox-gl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Loading, Slider, DateInput, Sidebar } from '../../components';
+import { MapPopup } from './components';
 import { mapboxToken, centerPosition } from '../../config';
 
 import LeftSidebarContent from './LeftSidebarContent';
@@ -31,14 +27,7 @@ const styles = {
   },
 };
 
-const Map = ReactMapboxGl({ accessToken: mapboxToken });
-const StyledPopup = styled.div`
-  background: white;
-  color: #3f618c;
-  font-weight: 400;
-  padding: 5px;
-  border-radius: 2px;
-`;
+const Map = ReactMapboxGl({ accessToken: mapboxToken, scrollZoom: false });
 
 class Main extends React.Component {
   constructor(props) {
@@ -46,9 +35,9 @@ class Main extends React.Component {
     this.state = {
       loading: true,
       openLeftSidebar: false,
-      openRightSidebar: false,
+      openRightSidebar: true,
       nodeSize: 3,
-      popup: undefined,
+      popup: null,
       center: null,
     };
     this.zoom = [3];
@@ -71,16 +60,14 @@ class Main extends React.Component {
         width: Math.log10(pointCount) * 30,
         height: Math.log10(pointCount) * 30,
       }}
-      onClick={this.clusterClick.bind(this, coordinates, pointCount, getLeaves)}
+      onClick={() => this.clusterClick(coordinates, pointCount, getLeaves)}
     >
       <div>{pointCount}</div>
     </Marker>
   );
 
   onMove = () => {
-    if (this.state.popup) {
-      this.setState({ popup: undefined });
-    }
+    //
   };
 
   clusterClick = (coordinates, total, getLeaves) => {
@@ -157,8 +144,13 @@ class Main extends React.Component {
             renderChildrenInPortal
             center={center || centerPosition}
             maxZoom={12}
+            scrollZoom={true}
+            movingMethod="flyTo"
           >
-            {/* <ZoomControl position="bottom-left" /> */}
+            <ZoomControl
+              className="mapbox-zoom-control"
+              position="bottom-left"
+            />
             <Cluster ClusterMarkerFactory={this.clusterMarker}>
               {falls.features.map((feature, key) => (
                 <Marker
@@ -177,18 +169,10 @@ class Main extends React.Component {
               ))}
             </Cluster>
             {popup && (
-              <Popup offset={[0, -50]} coordinates={popup.coordinates}>
-                <StyledPopup>
-                  {popup.leaves.map((leaf, index) => (
-                    <div key={index}>
-                      {leaf.props['data-feature'].properties.name}
-                    </div>
-                  ))}
-                  {popup.total > popup.leaves.length ? (
-                    <div>And more...</div>
-                  ) : null}
-                </StyledPopup>
-              </Popup>
+              <MapPopup
+                popup={popup}
+                onClose={() => this.setState({ popup: null })}
+              />
             )}
           </Map>
         </div>

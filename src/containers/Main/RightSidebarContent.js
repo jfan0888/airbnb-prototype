@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { TabBar, Button } from '../../components';
+import { TabBar, StatusButton } from '../../components';
 
 import Perception from './PerceptionSettings';
 import Attributes from './AttributesSettings';
@@ -13,11 +13,21 @@ class RightSidebarContent extends React.Component {
     super(props);
     this.state = {
       activeTab: 'Themes',
+      analyzeStatus: 'normal',
     };
   }
 
   switchTab = tabName => {
-    this.setState({ activeTab: tabName });
+    this.setState({ activeTab: tabName, analyzeStatus: 'normal' });
+  };
+
+  hanldeAnalysis = () => {
+    const { analyzeStatus } = this.state;
+
+    if (analyzeStatus !== 'loading') {
+      this.setState({ analyzeStatus: 'loading' });
+      setTimeout(() => this.setState({ analyzeStatus: 'done' }), 3000);
+    }
   };
 
   renderSettings = () => {
@@ -36,7 +46,7 @@ class RightSidebarContent extends React.Component {
   };
 
   render() {
-    const { activeTab } = this.state;
+    const { activeTab, analyzeStatus } = this.state;
 
     return (
       <div className="sidebar-content right">
@@ -54,7 +64,16 @@ class RightSidebarContent extends React.Component {
           />
           <div className="flex-1">{this.renderSettings()}</div>
           <div className="anlaysis-wrapper">
-            <Button type="action" title="Run Analysis" />
+            <StatusButton
+              status={analyzeStatus}
+              title="Run Analysis"
+              clickHanlder={this.hanldeAnalysis}
+            />
+            <span className={analyzeStatus}>
+              {analyzeStatus !== 'loading'
+                ? `${Math.floor(Math.random() * 999)}k records found`
+                : 'Loading'}
+            </span>
           </div>
         </div>
       </div>

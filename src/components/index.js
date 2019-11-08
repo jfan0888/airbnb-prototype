@@ -1,4 +1,5 @@
 import Button from './Button';
+import StatusButton from './StatusButton';
 import Loading from './Loading';
 import SidebarToggle from './SidebarToggle';
 import Slider from './Slider';
@@ -12,6 +13,7 @@ import Toggle from './Toggle';
 
 export {
   Button,
+  StatusButton,
   Loading,
   SidebarToggle,
   Slider,

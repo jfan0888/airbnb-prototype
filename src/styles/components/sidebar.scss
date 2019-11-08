@@ -33,7 +33,7 @@
     .close-button-wrapper {
       background: $whiteColor;
       font-size: 16px;
-      margin-top: 16px;
+      margin-top: 24px;
       cursor: pointer;
 
       .button {
@@ -81,11 +81,16 @@
         }
 
         .anlaysis-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           background: $mediumGrey;
-          padding-top: 24px;
-          padding-left: 21px;
-          padding-bottom: 17px;
+          padding: 24px 21px 17px;
           border-top: 1px solid $heavyGrey;
+
+          span.done {
+            color: rgb(82, 82, 82);
+          }
         }
       }
 

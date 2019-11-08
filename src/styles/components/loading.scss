@@ -8,6 +8,14 @@
     color: $secondaryColor;
   }
 
+  &.small {
+    .dot-item {
+      margin: 0 3.5px;
+      font-size: 11px;
+      color: $whiteColor;
+    }
+  }
+
   &.large {
     .dot-item {
       margin: 0 14px;

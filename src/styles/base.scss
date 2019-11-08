@@ -90,7 +90,7 @@ button {
     font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
     background: $secondaryColor;
     border: 1px solid $secondaryColor;
-    padding: 7px 20px;
+    padding: 7px 25px;
     color: $whiteColor;
     border-radius: 3px;
   }
@@ -112,10 +112,42 @@ button {
     border-radius: 3px;
   }
 
+  &.disable-focus {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+
   &:focus {
     box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px #717171,
       0 0 0 6px rgba(255, 255, 255, 0.5) !important;
     transition: box-shadow 0.2s ease !important;
+  }
+}
+
+.status-btn {
+  width: 135px;
+  height: 40px;
+  font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  background: $activeColor;
+  padding: 7px 20px;
+  color: $whiteColor;
+  border-radius: 3px;
+  outline: none !important;
+  border: none !important;
+
+  &.loading {
+    background: $inActiveColor;
+    color: $whiteColor;
+  }
+
+  &.done {
+    background: rgb(196, 196, 196);
+    color: $whiteColor;
   }
 }
 
