@@ -35,7 +35,7 @@ class Main extends React.Component {
     this.state = {
       loading: true,
       openLeftSidebar: false,
-      openRightSidebar: true,
+      openRightSidebar: false,
       nodeSize: 3,
       popup: null,
       center: null,
