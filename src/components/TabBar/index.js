@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TabItem from './TabItem';
 
@@ -10,10 +11,10 @@ class TabBar extends React.Component {
   componentDidMount() {}
 
   render() {
-    const { items, activeTab, onSelect } = this.props;
+    const { items, activeTab, onSelect, type } = this.props;
 
     return (
-      <div className="tab-bar d-flex">
+      <div className={`tab-bar d-flex ${type}`}>
         {items &&
           items.map((item, index) => (
             <TabItem
@@ -27,5 +28,13 @@ class TabBar extends React.Component {
     );
   }
 }
+
+TabBar.propTypes = {
+  type: PropTypes.string,
+};
+
+TabBar.defaultProps = {
+  type: '',
+};
 
 export default TabBar;
