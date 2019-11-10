@@ -72,6 +72,7 @@ class Main extends React.Component {
 
   clusterClick = (coordinates, total, getLeaves) => {
     this.setState({
+      center: coordinates,
       popup: {
         coordinates,
         total,
@@ -159,7 +160,14 @@ class Main extends React.Component {
                   coordinates={feature.geometry.coordinates}
                   data-feature={feature}
                   onClick={evt =>
-                    this.setState({ center: feature.geometry.coordinates })
+                    this.setState({
+                      center: feature.geometry.coordinates,
+                      popup: {
+                        coordinates: feature.geometry.coordinates,
+                        total: 1,
+                        leaves: null,
+                      },
+                    })
                   }
                 >
                   <div title={feature.properties.name}>

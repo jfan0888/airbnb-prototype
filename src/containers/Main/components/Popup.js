@@ -27,9 +27,9 @@ class MapPopup extends React.Component {
       <Popup offset={[0, -50]} coordinates={popup.coordinates}>
         <div className="map-popup-content">
           {/* {popup.leaves.map((leaf, index) => (
-        <div key={index}>{leaf.props['data-feature'].properties.name}</div>
-      ))}
-      {popup.total > popup.leaves.length ? <div>And more...</div> : null} */}
+              <div key={index}>{leaf.props['data-feature'].properties.name}</div>
+          ))}
+          {popup.total > popup.leaves.length ? <div>And more...</div> : null} */}
           <a className="map-popup-close" onClick={this.props.onClose}>
             <FontAwesomeIcon icon={faTimesCircle} />
           </a>

@@ -10,15 +10,15 @@
     letter-spacing: 0.5px;
     padding: 0 22px;
     color: $primaryColor;
-
-    span {
-      font-size: 12px;
-      color: rgb(150, 150, 150);
-      margin-left: 12px;
-    }
   }
 
   .move-to {
     padding: 0 15px;
+
+    span {
+      font-size: 12px;
+      color: rgb(150, 150, 150);
+      margin-right: 12px;
+    }
   }
 }

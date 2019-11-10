@@ -141,7 +141,7 @@
           height: 100%;
 
           .header {
-            padding: 16px 22px 21.5px;
+            padding: 16px 22px 0px;
             box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
 
             .label {
@@ -152,34 +152,32 @@
             .sort-wrapper {
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              margin-bottom: 21px;
 
-              span {
-                font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
-                font-size: 16px;
-                font-weight: 500;
-                color: $primaryColor;
-              }
+              .sort-type-button {
+                font-size: 14px;
+                font-weight: 300;
+                min-width: 113px;
+                height: 32px;
+                line-height: 30px;
+                text-align: center;
+                border: 1px solid $greyBorderColor;
+                cursor: pointer;
 
-              .buttons-wrapper {
-                display: flex;
+                &.left {
+                  border-top-left-radius: 3px;
+                  border-bottom-left-radius: 3px;
+                }
 
-                .sort-type-button {
-                  font-size: 14px;
-                  font-weight: 300;
-                  height: 32px;
-                  line-height: 30px;
-                  width: 112px;
-                  text-align: center;
-                  border-radius: 3px;
-                  border: 1px solid $greyBorderColor;
-                  cursor: pointer;
+                &.right {
+                  border-top-right-radius: 3px;
+                  border-bottom-right-radius: 3px;
+                }
 
-                  &.active {
-                    background: $secondaryColor;
-                    border-color: $secondaryColor;
-                    color: $whiteColor;
-                  }
+                &.active {
+                  background: $secondaryColor;
+                  border-color: $secondaryColor;
+                  color: $whiteColor;
                 }
               }
             }
