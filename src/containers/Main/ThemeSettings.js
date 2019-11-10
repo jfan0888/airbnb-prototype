@@ -2,12 +2,14 @@ import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { ThemeButton } from '../../components';
+import { SortTypeButton } from './components';
 
 class Themes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: 'sign',
+      commentary: 'private',
+      sortType: 'sent',
     };
   }
 
@@ -15,34 +17,57 @@ class Themes extends React.Component {
     this.setState({ sortType: value });
   };
 
+  setCommentary = value => {
+    this.setState({ commentary: value });
+  };
+
   render() {
-    const { sortType } = this.state;
+    const { commentary, sortType } = this.state;
 
     return (
       <div className="filter-settings themes">
         <div className="theme-category">
           <div className="header">
+            <h3 className="label">Commentary</h3>
+            <div className="sort-wrapper">
+              <SortTypeButton
+                customClassName={` left${
+                  commentary === 'private' ? ' active' : ''
+                }`}
+                clickHandler={() => this.setCommentary('private')}
+                caption="Private"
+              />
+              <SortTypeButton
+                customClassName={` right${
+                  commentary === 'public' ? ' active' : ''
+                }`}
+                clickHandler={() => this.setCommentary('public')}
+                caption="Public"
+              />
+            </div>
             <h3 className="label">Themes</h3>
             <div className="sort-wrapper">
-              <span>Sorted by</span>
-              <div className="buttons-wrapper">
-                <div
-                  className={`sort-type-button${
-                    sortType === 'sign' ? ' active' : ''
-                  }`}
-                  onClick={() => this.changeSortType('sign')}
-                >
-                  Signifincance
-                </div>
-                <div
-                  className={`sort-type-button${
-                    sortType === 'sent' ? ' active' : ''
-                  }`}
-                  onClick={() => this.changeSortType('sent')}
-                >
-                  Sentiment
-                </div>
-              </div>
+              <SortTypeButton
+                customClassName={` flex-1 left${
+                  sortType === 'pre' ? ' active' : ''
+                }`}
+                clickHandler={() => this.changeSortType('pre')}
+                caption="Prevalence"
+              />
+              <SortTypeButton
+                customClassName={` flex-1${
+                  sortType === 'cohen' ? ' active' : ''
+                }`}
+                clickHandler={() => this.changeSortType('cohen')}
+                caption="Cohension"
+              />
+              <SortTypeButton
+                customClassName={` flex-1${
+                  sortType === 'sent' ? ' active' : ''
+                }`}
+                clickHandler={() => this.changeSortType('sent')}
+                caption="Sentiment"
+              />
             </div>
           </div>
           <div className="content flex-1">
