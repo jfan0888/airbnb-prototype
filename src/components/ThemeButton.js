@@ -5,11 +5,9 @@ import Toggle from './Toggle';
 
 const ThemeButton = ({ caption, value, active }) => (
   <div className="theme-button d-flex align-items-center">
-    <div className="caption">
-      {caption}
+    <div className="caption">{caption}</div>
+    <a className="move-to d-flex align-items-center">
       <span>{value}</span>
-    </div>
-    <a className="move-to">
       <Toggle value={active} />
     </a>
   </div>
