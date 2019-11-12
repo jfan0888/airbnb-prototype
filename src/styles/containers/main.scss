@@ -70,6 +70,10 @@
     top: 0;
     z-index: 101;
     cursor: pointer;
-    font-size: 24px;
+    width: 37px;
+    height: 37px;
+    padding: 10px;
+    border-radius: 18.5px;
+    border: 1px solid rgba(95, 95, 95, 0.5);
   }
 }

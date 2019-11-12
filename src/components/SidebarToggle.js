@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTv, faSlidersH } from '@fortawesome/free-solid-svg-icons';
+const displayIcon = require('../assets/icons/displays.svg');
+const filtersIcon = require('../assets/icons/filters.svg');
 
 const SidebarToggle = ({ clickHanlder, type }) => (
   <button className={`sidebar-toggle ${type}`} onClick={clickHanlder}>
-    <FontAwesomeIcon icon={type === 'left' ? faTv : faSlidersH} />
+    <img src={type === 'left' ? displayIcon : filtersIcon} />
   </button>
 );
 

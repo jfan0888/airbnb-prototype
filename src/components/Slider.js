@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactSlider from 'react-slider';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
+
+const threeBarIcon = require('../assets/icons/grip.svg');
 
 const StyledSlider = styled(ReactSlider)`
   width: 100%;
@@ -10,6 +10,7 @@ const StyledSlider = styled(ReactSlider)`
 `;
 
 const StyledThumb = styled.div`
+  display: flex;
   height: 25px;
   line-height: 25px;
   width: 25px;
@@ -18,6 +19,7 @@ const StyledThumb = styled.div`
   background-color: #fff;
   color: #07878b;
   border-radius: 50%;
+  padding: 5px;
   cursor: grab;
   bottom: -12.5px;
   font-size: 10px;
@@ -26,7 +28,7 @@ const StyledThumb = styled.div`
 
 const Thumb = (props, state) => (
   <StyledThumb {...props}>
-    <FontAwesomeIcon icon={faGripLinesVertical} />
+    <img src={threeBarIcon} />
   </StyledThumb>
 );
 

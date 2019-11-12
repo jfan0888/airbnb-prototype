@@ -2,10 +2,9 @@ import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Popup } from 'react-mapbox-gl';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
-
 import { TabBar } from '../../../components';
+
+const closeIcon = require('../../../assets/icons/close.svg');
 
 class MapPopup extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class MapPopup extends React.Component {
           ))}
           {popup.total > popup.leaves.length ? <div>And more...</div> : null} */}
           <a className="map-popup-close" onClick={this.props.onClose}>
-            <FontAwesomeIcon icon={faTimesCircle} />
+            <img src={closeIcon} />
           </a>
           <div className="title">ID 452232</div>
           <div className="duration">Octobor 12 - Octobor 23</div>
