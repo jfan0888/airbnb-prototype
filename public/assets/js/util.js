@@ -509,7 +509,7 @@ function getProfileAvatar(sGender, sEthinicty) {
       'Native American': 'other',
       Other: 'other',
     },
-    imagePath = '../../../public/assets/images/avatars/';
+    imagePath = '/assets/images/avatars/';
 
   var img = oEthinicityImageMap[sEthinicty] || oEthinicityImageMap['Other'];
   // Add gender version
