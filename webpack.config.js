@@ -55,7 +55,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
-    new CopyWebpackPlugin([{ from: 'public/assets', to: 'assets' }]),
+    new CopyWebpackPlugin([
+      { from: 'public/assets', to: 'assets' },
+      { from: 'public/data', to: 'data' },
+    ]),
   ],
   devServer: {
     contentBase: './',
