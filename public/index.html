@@ -12,6 +12,60 @@
     <title>Airbnb Prototype</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css"
+    />
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js"></script>
+    <script
+      type="text/javascript"
+      src="assets/js/lib/wordtree/d3.min.js"
+    ></script>
+    <script type="text/javascript">
+      // Move d3 v3 to variable d3v3
+      //
+      window.d3v3 = d3;
+      delete d3;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="assets/js/lib/mustache.min.js"></script>
+
+    <script src="assets/js/lib/wordtree/longscroll.js"></script>
+    <script src="assets/js/lib/wordtree/wordtree.js"></script>
+
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/datamodel.js"></script>
+    <!-- <script src="assets/js/filter.js"></script> -->
+    <script src="assets/js/wordtree.js"></script>
+    <script src="assets/js/lib/horizontalboxplot.js"></script>
+
+    <script>
+      // Mapbox access token
+      //
+      mapboxgl.accessToken =
+        'pk.eyJ1IjoiaWFzaGlzaHNpbmdoIiwiYSI6ImNqbHQ2d2JpcTA1cnEzcG9idGl2aTN5MTMifQ.yGUYoyQ4IyAfzl3E2D0ecA';
+    </script>
+
     <link
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
@@ -21,5 +75,239 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- MiniScore Template -->
+    <script id="profile_miniscore_tpl" type="text/html">
+
+      <ul class="popup__list">
+          {{#profiles}}
+          <li data-id="{{ID}}">
+
+              <div class="profile-icon profile-icon--mini" style="background-image:url('{{avatar}}');"></div>
+                <div class="miniscore miniscore--h" title="Hardware Adoption">
+                  <label class="miniscore__label">
+                    H
+                    <label class="miniscore__value">{{hs}}{{^hs}}0{{/hs}}</label>
+                  </label>
+                </div>
+                <div class="miniscore miniscore--s" title="Software Adoption">
+                  <label class="miniscore__label">
+                    S
+                    <label class="miniscore__value">{{ss}}{{^ss}}0{{/ss}}</label>
+                  </label>
+                </div>
+                <div class="miniscore miniscore--t" title="Technology Savviness">
+                  <label class="miniscore__label">
+                    T
+                    <label class="miniscore__value">{{ts}}{{^ts}}0{{/ts}}</label>
+                  </label>
+                </div>
+
+          </li>
+          {{/profiles}}
+
+      </ul>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
+    <!-- Popup Template - Large -->
+    <script id="popup_large_profile_tpl" type="text/html">
+
+      <div class="popup popup--large popup--listing {{#isActiveProfile}}popup--activeprofile{{/isActiveProfile}}">
+          {{#profiles}}
+          <div class="profilepanel {{#isActiveProfile}}profilepanel--active{{/isActiveProfile}}">
+              <div class="profilepanel__toolbar pbar profilepanel--handle">
+                  <h3 class="pbar__left">ID{{ID}}: {{First Name}}</h3>
+                  <h3 class="pbar__center">{{Employment}}{{#_title}}, {{.}}{{/_title}}</h3>
+                  <div class="pbar__right">
+                      <button class="profilepanel__bookmark {{#_isBookmarked}}profilepanel__bookmark--active{{/_isBookmarked}}" data-id="{{ID}}">
+                          <svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet" class="artdeco-icon" focusable="false">
+                              <path d="M18,2H6A1,1,0,0,0,5,3V23l7-4.72L19,23V3A1,1,0,0,0,18,2ZM7,19.36V4H17V19.34L12,16Z" class="large-icon" style="fill: currentColor"></path>
+                          </svg>
+                      </button>
+                  </div>
+              </div>
+              <div class="profilepanel__head phead profilepanel--handle">
+                  <div class="phead__img profile-icon profile-icon--large" style="background-image:url('{{avatar}}');"></div>
+                  <div class="phead__attributes">
+                      <ul>
+                          <li>{{Gender}}, {{Age}}{{#Ethnicity}}, {{.}} {{/Ethnicity}}</li>
+                          <li>{{Marital}} {{#ownType}}, {{.}} {{/ownType}}</li>
+                          <li>{{Employment Status}}</li>
+                          <li>{{Children in Home}} Children in Home</li>
+                          <li>{{_phone_choice}}</li>
+                          <li>{{Education}}</li>
+                          <li>{{City}}{{#State}}, {{.}}{{/State}}</li>
+                          <li>{{HHI}}</li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="profilepanel__body pbody">
+                  <ul class="accordion">
+                      {{#_hasMedia}}
+                      <!-- Media -->
+                      <li class="accordion__item">
+                          <input type="checkbox">
+                          <i></i>
+                          <div class="aitem__head ahbar">
+                              <h2 class="ahbar__left">Media</h2>
+                              <h2 class="ahbar__right">{{_mediaCount}}</h2>
+                          </div>
+                          <div class="aitem__body">
+
+                              <!-- Slider main container -->
+                              <div class="swiper-container">
+                                  <!-- Additional required wrapper -->
+                                  <div class="swiper-wrapper">
+                                      <!-- Slides -->
+                                      {{#_aMedia}}
+                                      <div class="swiper-slide">
+
+                                          {{#isVideo}}
+                                          <iframe width="100%" height="100%" src="https://drive.google.com/file/d/{{id}}/preview"></iframe>
+                                          {{/isVideo}}
+
+                                          {{#isImage}}
+                                          <div class="img" style="background-image: url(https://drive.google.com/uc?export=download&id={{id}});"></div>
+                                          {{/isImage}}
+
+                                      </div>
+                                      {{/_aMedia}}
+                                  </div>
+                                  <!-- If we need pagination -->
+                                  <div class="swiper-pagination"></div>
+
+                                  <!-- If we need navigation buttons -->
+                                  <div class="swiper-button-prev"></div>
+                                  <div class="swiper-button-next"></div>
+
+                              </div>
+
+                          </div>
+                      </li>
+                      {{/_hasMedia}}
+                      <li class="accordion__item">
+                          <input type="checkbox" checked>
+                          <i></i>
+                          <div class="aitem__head ahbar">
+                              <h2 class="ahbar__left">Hardware Adoption</h2>
+                              <h2 class="ahbar__right">{{Hardware Score}}</h2>
+                          </div>
+                          <div class="aitem__body">
+                              <ul class="list list--inline">
+                                  <li>TVs ({{TVs}})</li>
+                                  <li>DVRs ({{DVRs}})</li>
+                                  <li>Game Console ({{Game Console}})</li>
+                                  <li>Desktops ({{Desktops}})</li>
+                                  <li>Laptops ({{Laptops}})</li>
+                                  <li>Tablets ({{Tablets}})</li>
+                                  <li>Network Router ({{Network Router}})</li>
+                                  <li>Printer ({{Printer}})</li>
+                                  <li>Wearables ({{Wearables}})</li>
+                                  <li>Smartphones ({{Smartphones}})</li>
+                                  <li>Handhelds ({{Handhelds}})</li>
+                                  <li>Home Automation ({{Home Automation}})</li>
+                                  <li>Home Hub ({{Home Hub}})</li>
+                                  <li>Home Appliances ({{Home Appliances}})</li>
+                              </ul>
+                          </div>
+                      </li>
+                      <li class="accordion__item">
+                          <input type="checkbox" checked>
+                          <i></i>
+                          <div class="aitem__head ahbar">
+                              <h2 class="ahbar__left">Software Score</h2>
+                              <h2 class="ahbar__right">{{Software Score}}</h2>
+                          </div>
+                          <div class="aitem__body">
+                              <div class="colflex">
+                                  <div>
+                                      <h4>Hourly/Daily</h4>
+                                      <ul class="list">
+                                          {{#_daily}}
+                                          <li>{{.}}</li>
+                                          {{/_daily}}
+                                      </ul>
+                                  </div>
+                                  <div>
+                                      <h4>Weekly</h4>
+                                      <ul class="list">
+                                          {{#_weekly}}
+                                          <li>{{.}}</li>
+                                          {{/_weekly}}
+                                      </ul>
+                                  </div>
+                                  <div>
+                                      <h4>Monthly/Yearly</h4>
+                                      <ul class="list">
+                                          {{#_yearly}}
+                                          <li>{{.}}</li>
+                                          {{/_yearly}}
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </li>
+                      <li class="accordion__item">
+                          <input type="checkbox" checked>
+                          <i></i>
+                          <div class="aitem__head ahbar">
+                              <h2 class="ahbar__left">Tech Savviness</h2>
+                              <h2 class="ahbar__right">{{Savviness Index}}</h2>
+                          </div>
+                          <div class="aitem__body">
+                              <ul class="list list--block">
+                                  {{#tsp}}
+                                  <li>{{.}}</li>
+                                  {{/tsp}}
+                              </ul>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+              <div class="profilepanel__footer pbar">
+                  <button class="pbar__full profilepanel__back">View List</button>
+              </div>
+          </div>
+          {{/profiles}}
+      </div>
+    </script>
+
+    <!-- Participants tooltip - used in quantitative-corelation -->
+    <div
+      id="ptooltip"
+      class="mapboxgl-popup mapboxgl-popup-anchor-bottom"
+      style="pointer-events: all;"
+    >
+      <div class="mapboxgl-popup-tip"></div>
+      <div class="mapboxgl-popup-content">
+        <button
+          class="mapboxgl-popup-close-button"
+          type="button"
+          aria-label="Close popup"
+        >
+          ×
+        </button>
+        <div class="content"></div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Load the Observable runtime and inspector.
+      //import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+      import { Runtime, Inspector } from './assets/js/lib/runtime.js';
+
+      // Or, your notebook, downloaded locally.
+      //import notebook from "./assets/js/lib/94749c2763adbd00.js?v=3";
+
+      import notebook from 'https://api.observablehq.com/d/94749c2763adbd00.js?v=3';
+
+      // Load the notebook, observing its cells with a default Inspector
+      // that simply renders the value of each cell into the provided DOM node.
+      window.observable = {};
+      window.observable.Runtime = Runtime;
+
+      window.observable.Inspector = Inspector;
+      window.observable.notebook = notebook;
+    </script>
   </body>
 </html>
