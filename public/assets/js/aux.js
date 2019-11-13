@@ -9,7 +9,7 @@
 (function Aux() {
 
     var dispatch = d3.dispatch('filterUpdate', 'applyFiltersOnData', 'datasetRefreshed', 'mapLoaded', 'dataLoaded', 'updateProfileGeoJSON', 'adhocMetricUpdate', 'adhocUpdateDone', 'profile-features-joined', 'toggleBookmark', 'showProfileOnMap', 'resetFilters', 'switchView', 'wordtreeBeginUpdate', 'wordtreeLoaded', 'profilePopupShown'),
-    sUrlProfile = '../../../public/data/viz/analysed-dataset-full.csv', //'data/viz/profile-data.csv',
+    sUrlProfile = '/data/viz/analysed-dataset-full.csv', //'data/viz/profile-data.csv',
 
     DataManager,
 
@@ -1594,7 +1594,7 @@
 
         // Work with GeoJSON
         // 
-        d3.json("../../../public/data/GeoJSON/counties/counties-metrics-geo-3220.json").then(function(oGeoJSON){
+        d3.json("/data/GeoJSON/counties/counties-metrics-geo-3220.json").then(function(oGeoJSON){
             
             oCountiesGeoJSON = oGeoJSON;
             

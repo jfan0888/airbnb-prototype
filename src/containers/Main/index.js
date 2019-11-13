@@ -27,12 +27,12 @@ class Main extends React.Component {
   componentDidMount() {
     this.setState({ center: centerPosition });
     const script1 = document.createElement('script');
-    script1.src = '../../../public/assets/js/popup.js';
+    script1.src = '/assets/js/popup.js';
     script1.async = true;
     document.body.appendChild(script1);
 
     const script = document.createElement('script');
-    script.src = '../../../public/assets/js/aux.js';
+    script.src = '/assets/js/aux.js';
     script.async = true;
     document.body.appendChild(script);
   }
