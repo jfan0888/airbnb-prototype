@@ -26,6 +26,11 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.setState({ center: centerPosition });
+    const script2 = document.createElement('script');
+    script2.src = '/assets/js/filter.js';
+    script2.async = true;
+    document.body.appendChild(script2);
+
     const script1 = document.createElement('script');
     script1.src = '/assets/js/popup.js';
     script1.async = true;
@@ -128,7 +133,7 @@ class Main extends React.Component {
             <div className="start-date">
               <DateInput />
             </div>
-            <div className="start-date">
+            <div className="end-date">
               <DateInput />
             </div>
           </div>

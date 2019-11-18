@@ -63,7 +63,7 @@ class RightSidebarContent extends React.Component {
             onSelect={this.switchTab}
           />
           <div className="flex-1">{this.renderSettings()}</div>
-          <div className="anlaysis-wrapper">
+          <div className="analaysis-wrapper">
             <StatusButton
               status={analyzeStatus}
               title="Run Analysis"

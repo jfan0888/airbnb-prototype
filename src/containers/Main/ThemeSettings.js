@@ -4,21 +4,61 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { ThemeButton } from '../../components';
 import { SortTypeButton } from './components';
 
+import themeData from './data/themes.json';
+
 class Themes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       commentary: 'private',
-      sortType: 'sent',
+      sortType: 'sentiment',
+      themesList: [],
     };
   }
 
+  componentDidMount() {
+    const { commentary, sortType } = this.state;
+
+    this.updateThemesList(commentary, sortType);
+  }
+
+  updateThemesList = (commentary, sortType) => {
+    const themeCategoryData = themeData.data.find(
+      item => item.category === commentary
+    );
+    const sortedData =
+      sortType === 'sentiment'
+        ? themeCategoryData.list.sort()
+        : themeCategoryData.list.reverse();
+
+    this.setState({ themesList: sortedData, commentary, sortType });
+  };
+
   changeSortType = value => {
-    this.setState({ sortType: value });
+    this.updateThemesList(this.state.commentary, value);
   };
 
   setCommentary = value => {
-    this.setState({ commentary: value });
+    this.updateThemesList(value, this.state.sortType);
+  };
+
+  renderThemes = () => {
+    const { themesList } = this.state;
+
+    return (
+      <>
+        {themesList
+          .filter(item => item.type === this.state.sortType)
+          .map((themeItem, index) => (
+            <ThemeButton
+              key={`theme_${index}`}
+              caption={themeItem.name}
+              value={themeItem.value}
+              active={themeItem.status === 'active'}
+            />
+          ))}
+      </>
+    );
   };
 
   render() {
@@ -49,37 +89,29 @@ class Themes extends React.Component {
             <div className="sort-wrapper">
               <SortTypeButton
                 customClassName={` flex-1 left${
-                  sortType === 'pre' ? ' active' : ''
+                  sortType === 'prevalence' ? ' active' : ''
                 }`}
-                clickHandler={() => this.changeSortType('pre')}
+                clickHandler={() => this.changeSortType('prevalence')}
                 caption="Prevalence"
               />
               <SortTypeButton
                 customClassName={` flex-1${
-                  sortType === 'cohen' ? ' active' : ''
+                  sortType === 'cohension' ? ' active' : ''
                 }`}
-                clickHandler={() => this.changeSortType('cohen')}
+                clickHandler={() => this.changeSortType('cohension')}
                 caption="Cohension"
               />
               <SortTypeButton
-                customClassName={` flex-1${
-                  sortType === 'sent' ? ' active' : ''
+                customClassName={` flex-1 right${
+                  sortType === 'sentiment' ? ' active' : ''
                 }`}
-                clickHandler={() => this.changeSortType('sent')}
+                clickHandler={() => this.changeSortType('sentiment')}
                 caption="Sentiment"
               />
             </div>
           </div>
           <div className="content flex-1">
-            <Scrollbars>
-              <ThemeButton caption="Theme_Name" value="34%" />
-              <ThemeButton active caption="Theme_Name" value="33%" />
-              <ThemeButton caption="Theme_Name" value="32%" />
-              <ThemeButton caption="Theme_Name" value="29%" />
-              <ThemeButton active caption="Theme_Name" value="27%" />
-              <ThemeButton caption="Theme_Name" value="25%" />
-              <ThemeButton caption="Theme_Name" value="21%" />
-            </Scrollbars>
+            <Scrollbars>{this.renderThemes()}</Scrollbars>
           </div>
         </div>
       </div>

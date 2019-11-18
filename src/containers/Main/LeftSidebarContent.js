@@ -7,7 +7,7 @@ import { Dropdown, Slider } from '../../components';
 const LeftSidebarContent = props => (
   <div className="sidebar-content left">
     <div className="main">
-      <h4 className="title">Display</h4>
+      <h3 className="title">Display</h3>
       <div className="filter-item">
         <h4 className="label">Display Type</h4>
         <Dropdown />
