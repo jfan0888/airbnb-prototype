@@ -77,15 +77,15 @@ button {
 
 .btn {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   outline: none !important;
+  padding: 5px 20px;
 
   &.primary {
     font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
     background: transparent;
     border: 1px solid $greyBorderColor;
-    padding: 7px 25px;
     color: $primaryColor;
     border-radius: 3px;
   }
@@ -94,7 +94,6 @@ button {
     font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
     background: $secondaryColor;
     border: 1px solid $secondaryColor;
-    padding: 7px 25px;
     color: $whiteColor;
     border-radius: 3px;
   }
@@ -130,15 +129,15 @@ button {
 }
 
 .status-btn {
-  width: 135px;
-  height: 40px;
+  width: 110px;
+  height: 32px;
   font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   cursor: pointer;
   background: $activeColor;
-  padding: 7px 20px;
+  padding: 0.4rem 1rem;
   color: $whiteColor;
   border-radius: 3px;
   outline: none !important;
@@ -176,9 +175,9 @@ button {
     border-radius: 1px;
     border: 1px solid $greyBorderColor;
     color: #727272;
-    padding: 0 11px;
+    padding: 0 8px;
     font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
 
     .mask-text {
       margin-right: 5px;
@@ -186,7 +185,7 @@ button {
 
     &.number {
       display: inline-block;
-      line-height: 40px;
+      line-height: 32px;
     }
   }
 }
@@ -194,13 +193,13 @@ button {
 h4.label {
   display: inline-block;
   font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 h3.label {
   display: inline-block;
   font-family: 'AirbnbCereal-Bold', Arial, Helvetica, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
