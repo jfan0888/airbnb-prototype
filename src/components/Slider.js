@@ -11,18 +11,18 @@ const StyledSlider = styled(ReactSlider)`
 
 const StyledThumb = styled.div`
   display: flex;
-  height: 25px;
-  line-height: 25px;
-  width: 25px;
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
   text-align: center;
   border: 1px solid #07878b;
   background-color: #fff;
   color: #07878b;
   border-radius: 50%;
-  padding: 5px;
+  padding: 4px;
   cursor: grab;
-  bottom: -12.5px;
-  font-size: 10px;
+  bottom: -10px;
+  font-size: 8px;
   z-index: 0 !important;
 `;
 
@@ -49,7 +49,7 @@ const Slider = ({ single, defaultValue, ...props }) =>
       {...props}
       renderTrack={SingleTrack}
       renderThumb={Thumb}
-      onAfterChange={props.updateHandler}
+      onChange={props.updateHandler}
     />
   ) : (
     <StyledSlider
@@ -57,7 +57,7 @@ const Slider = ({ single, defaultValue, ...props }) =>
       defaultValue={defaultValue}
       renderTrack={Track}
       renderThumb={Thumb}
-      onAfterChange={props.updateHandler}
+      onChange={props.updateHandler}
     />
   );
 

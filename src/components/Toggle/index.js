@@ -16,6 +16,14 @@ class Toggle extends React.Component {
     if (value) this.setState({ value: true });
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { value } = this.props;
+
+    if (value !== nextProps.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+
   clickHanlder = () => {
     this.setState(prevState => {
       return { value: !prevState.value };

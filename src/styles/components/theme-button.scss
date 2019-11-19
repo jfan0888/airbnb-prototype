@@ -1,19 +1,18 @@
 .theme-button {
   border-bottom: 1px solid rgb(222, 222, 222);
-  padding: 15px 0;
+  padding: 0.8em 0;
 
   .caption {
     flex: 1;
     font-family: 'AirbnbCereal-Book', Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 300;
-    letter-spacing: 0.5px;
-    padding: 0 22px;
+    padding: 0 1em;
     color: $primaryColor;
   }
 
   .move-to {
-    padding: 0 15px;
+    padding: 0 0.8em;
 
     span {
       font-size: 12px;

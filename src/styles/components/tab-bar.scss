@@ -1,5 +1,5 @@
 .tab-bar {
-  padding: 0 20px;
+  padding: 0 1rem;
   border-bottom: 1px solid rgb(222, 222, 222);
   align-items: center;
   justify-content: space-around;
@@ -9,12 +9,12 @@
   }
 
   .tab-item {
-    padding: 17px 0;
-    margin: 0 21px;
+    padding: 0.8rem 0;
+    margin: 0 1em;
     border-bottom: 3px solid transparent;
     color: rgb(72, 72, 72);
     font-family: 'AirbnbCereal-Medium', Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
 
