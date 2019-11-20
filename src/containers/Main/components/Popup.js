@@ -23,12 +23,8 @@ class MapPopup extends React.Component {
     const { activeTab } = this.state;
 
     return (
-      <Popup offset={[0, -50]} coordinates={popup.coordinates}>
+      <Popup offset={[0, -40]} coordinates={popup.coordinates}>
         <div className="map-popup-content">
-          {/* {popup.leaves.map((leaf, index) => (
-              <div key={index}>{leaf.props['data-feature'].properties.name}</div>
-          ))}
-          {popup.total > popup.leaves.length ? <div>And more...</div> : null} */}
           <a className="map-popup-close" onClick={this.props.onClose}>
             <img src={closeIcon} />
           </a>

@@ -49,7 +49,8 @@ const Slider = ({ single, defaultValue, ...props }) =>
       {...props}
       renderTrack={SingleTrack}
       renderThumb={Thumb}
-      onChange={props.updateHandler}
+      onChange={props.changeHandler}
+      onAfterChange={props.updateHandler}
     />
   ) : (
     <StyledSlider
@@ -57,7 +58,8 @@ const Slider = ({ single, defaultValue, ...props }) =>
       defaultValue={defaultValue}
       renderTrack={Track}
       renderThumb={Thumb}
-      onChange={props.updateHandler}
+      onChange={props.changeHandler}
+      onAfterChange={props.updateHandler}
     />
   );
 

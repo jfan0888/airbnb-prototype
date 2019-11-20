@@ -12,36 +12,62 @@ class Attributes extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.resetSettings(this.props);
+  }
+
+  resetSettings = props => {
+    const { settings } = props;
+    const { accomodationTypes, houseRules } = settings;
+
+    if (settings && accomodationTypes && houseRules) {
+      this.setState({
+        accomodationTypes: accomodationTypes.value,
+        houseRules: houseRules.value,
+      });
+    }
+  };
+
   setAccomodationType = value => {
-    this.setState(prevState => {
-      let newAccomodationTypes = prevState.accomodationTypes;
+    const { accomodationTypes } = this.state;
 
-      if (newAccomodationTypes.includes(value)) {
-        newAccomodationTypes.splice(newAccomodationTypes.indexOf(value), 1);
-      } else {
-        newAccomodationTypes.push(value);
-      }
+    let newAccomodationTypes = accomodationTypes;
 
-      return { accomodationTypes: newAccomodationTypes };
-    });
+    if (newAccomodationTypes.includes(value)) {
+      newAccomodationTypes.splice(newAccomodationTypes.indexOf(value), 1);
+    } else {
+      newAccomodationTypes.push(value);
+    }
+
+    this.setState({ accomodationTypes: newAccomodationTypes });
+    this.props.setAttributes('accomodationTypes', newAccomodationTypes);
   };
 
   setHouseRule = value => {
-    this.setState(prevState => {
-      let newHouseRules = prevState.houseRules;
+    const { houseRules } = this.state;
 
-      if (newHouseRules.includes(value)) {
-        newHouseRules.splice(newHouseRules.indexOf(value), 1);
-      } else {
-        newHouseRules.push(value);
-      }
+    let newHouseRules = houseRules;
 
-      return { houseRules: newHouseRules };
-    });
+    if (newHouseRules.includes(value)) {
+      newHouseRules.splice(newHouseRules.indexOf(value), 1);
+    } else {
+      newHouseRules.push(value);
+    }
+
+    this.setState({ houseRules: newHouseRules });
+    this.props.setAttributes('houseRules', newHouseRules);
   };
 
   render() {
     const { accomodationTypes, houseRules } = this.state;
+    const { settings } = this.props;
+
+    const {
+      perNightPrice,
+      daysOfStay,
+      totalBedrooms,
+      successfulBooks,
+    } = settings;
 
     return (
       <Scrollbars>
@@ -73,11 +99,28 @@ class Attributes extends React.Component {
             <DataRange
               caption="Per night price"
               mask="$"
-              defaultValue={[0, 5]}
-              max={5}
+              defaultValue={perNightPrice.value}
+              max={10000}
+              updateHandler={value =>
+                this.props.setAttributes('perNightPrice', value)
+              }
             />
-            <DataRange caption="Days of stay" defaultValue={[0, 5]} max={5} />
-            <DataRange caption="Total bedrooms" defaultValue={[0, 5]} max={5} />
+            <DataRange
+              caption="Days of stay"
+              defaultValue={daysOfStay.value}
+              max={30}
+              updateHandler={value =>
+                this.props.setAttributes('daysOfStay', value)
+              }
+            />
+            <DataRange
+              caption="Total bedrooms"
+              defaultValue={totalBedrooms.value}
+              max={10}
+              updateHandler={value =>
+                this.props.setAttributes('totalBedrooms', value)
+              }
+            />
             <div className="house-rules-wrapper">
               <h4 className="label">House Rules</h4>
               <div>
@@ -97,8 +140,11 @@ class Attributes extends React.Component {
             </div>
             <DataRange
               caption="Successful books"
-              defaultValue={[0, 99999]}
+              defaultValue={successfulBooks.value}
               max={99999}
+              updateHandler={value =>
+                this.props.setAttributes('successfulBooks', value)
+              }
             />
           </div>
         </div>

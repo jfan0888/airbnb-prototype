@@ -19,7 +19,7 @@ class DataRange extends React.Component {
     this.setState({ startValue: defaultValue[0], endValue: defaultValue[1] });
   }
 
-  updateHandler = value => {
+  changeHandler = value => {
     this.setState({ startValue: value[0], endValue: value[1] });
   };
 
@@ -33,7 +33,8 @@ class DataRange extends React.Component {
         <Slider
           {...otherProps}
           defaultValue={defaultValue}
-          updateHandler={this.updateHandler}
+          changeHandler={this.changeHandler}
+          updateHandler={this.props.updateHandler}
         />
         <div className="data-range">
           <div className="value-box number">

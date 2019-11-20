@@ -31,6 +31,14 @@ class Themes extends React.Component {
         ? themeCategoryData.list.sort()
         : themeCategoryData.list.reverse();
 
+    this.props.setThemes({
+      themesList: {
+        type: 'array',
+        value: sortedData.filter(item => item.type === sortType),
+      },
+      commentary: { type: 'radio', value: commentary },
+      sortType: { type: 'radio', value: sortType },
+    });
     this.setState({ themesList: sortedData, commentary, sortType });
   };
 

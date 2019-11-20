@@ -1,8 +1,11 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { TabBar, StatusButton } from '../../components';
+import { setPerception, setThemes, setAttributes } from '../../actions';
 
 import Perception from './PerceptionSettings';
 import Attributes from './AttributesSettings';
@@ -14,8 +17,35 @@ class RightSidebarContent extends React.Component {
     this.state = {
       activeTab: 'Themes',
       analyzeStatus: 'normal',
+      perceptionSettings: null,
+      themeSettings: null,
+      attributesSettings: null,
     };
   }
+
+  componentDidMount() {
+    this.resetFilterSettings(this.props);
+  }
+
+  resetFilterSettings = props => {
+    const {
+      perceptionSettingsValue,
+      attributesSettingsValue,
+      themeSettingsValue,
+    } = props;
+
+    if (
+      perceptionSettingsValue &&
+      attributesSettingsValue &&
+      themeSettingsValue
+    ) {
+      this.setState({
+        perceptionSettings: perceptionSettingsValue,
+        attributesSettings: attributesSettingsValue,
+        themeSettings: themeSettingsValue,
+      });
+    }
+  };
 
   switchTab = tabName => {
     this.setState({ activeTab: tabName, analyzeStatus: 'normal' });
@@ -31,15 +61,32 @@ class RightSidebarContent extends React.Component {
   };
 
   renderSettings = () => {
-    const { activeTab } = this.state;
+    const {
+      activeTab,
+      perceptionSettings,
+      themeSettings,
+      attributesSettings,
+    } = this.state;
 
     switch (activeTab) {
       case 'Perception':
-        return <Perception />;
+        return (
+          <Perception
+            settings={perceptionSettings}
+            setPerception={this.props.setPerception}
+          />
+        );
       case 'Attributes':
-        return <Attributes />;
+        return (
+          <Attributes
+            settings={attributesSettings}
+            setAttributes={this.props.setAttributes}
+          />
+        );
       case 'Themes':
-        return <Themes />;
+        return (
+          <Themes settings={themeSettings} setThemes={this.props.setThemes} />
+        );
       default:
         return null;
     }
@@ -81,4 +128,16 @@ class RightSidebarContent extends React.Component {
   }
 }
 
-export default RightSidebarContent;
+const mapStateToProps = state => ({
+  perceptionSettingsValue: state.perception.data,
+  attributesSettingsValue: state.attributes.data,
+  themeSettingsValue: state.themes.data,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ setPerception, setThemes, setAttributes }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RightSidebarContent);
