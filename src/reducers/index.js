@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import filter from './filter';
+import perception from './perception';
+import attributes from './attributes';
+import themes from './themes';
 
 export default combineReducers({
-    filter,
+  perception,
+  attributes,
+  themes,
 });
