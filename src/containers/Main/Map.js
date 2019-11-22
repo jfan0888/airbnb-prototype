@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { MapPopup } from './components';
 import { mapboxToken, centerPosition } from '../../config';
 
-const falls = require('./falls.json');
+const falls = require('./data/falls.json');
 const styles = {
   marker: {
     minWidth: 30,
