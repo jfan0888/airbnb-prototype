@@ -24,18 +24,6 @@
         },
         {
           "name": "Theme_Name",
-          "type": "prevalence",
-          "value": "29%",
-          "status": "active"
-        },
-        {
-          "name": "Theme_Name",
-          "type": "prevalence",
-          "value": "27%",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name",
           "value": "+.92",
           "type": "cohension",
           "status": ""
@@ -51,30 +39,6 @@
           "value": "+.12",
           "type": "cohension",
           "status": "active"
-        },
-        {
-          "name": "Theme_Name",
-          "type": "sentiment",
-          "value": "33%",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name",
-          "type": "sentiment",
-          "value": "29%",
-          "status": "active"
-        },
-        {
-          "name": "Theme_Name",
-          "type": "sentiment",
-          "value": "27%",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name",
-          "type": "sentiment",
-          "value": "32%",
-          "status": ""
         }
       ]
     },
@@ -83,68 +47,50 @@
       "list": [
         {
           "name": "Theme_Name_P",
-          "value": "27%",
+          "value": "21%",
           "type": "prevalence",
           "status": ""
         },
         {
           "name": "Theme_Name_T",
-          "value": "33%",
+          "value": "32%",
           "type": "prevalence",
           "status": ""
         },
         {
           "name": "Theme_Name_A",
-          "value": "31%",
+          "value": "35%",
           "type": "prevalence",
           "status": "active"
         },
         {
           "name": "Theme_Name_R",
+          "value": "39%",
+          "type": "prevalence",
+          "status": "active"
+        },
+        {
+          "name": "Theme_Name_P",
           "value": "+.92",
           "type": "cohension",
           "status": ""
         },
         {
-          "name": "Theme_Name_I",
+          "name": "Theme_Name_T",
           "value": "+.15",
           "type": "cohension",
           "status": ""
         },
         {
-          "name": "Theme_Name_V",
+          "name": "Theme_Name_A",
           "value": "+.12",
           "type": "cohension",
           "status": "active"
         },
         {
-          "name": "Theme_Name_E",
+          "name": "Theme_Name_R",
           "value": "+.27",
           "type": "cohension",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name_S",
-          "type": "sentiment",
-          "value": "33%",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name_Z",
-          "type": "sentiment",
-          "value": "29%",
-          "status": "active"
-        },
-        {
-          "name": "Theme_Name_O",
-          "type": "sentiment",
-          "value": "27%",
-          "status": ""
-        },
-        {
-          "name": "Theme_Name_Q",
-          "type": "sentiment",
-          "value": "32%",
           "status": ""
         }
       ]

@@ -27,14 +27,17 @@ class Themes extends React.Component {
       item => item.category === commentary
     );
     const sortedData =
-      sortType === 'sentiment'
+      sortType === 'cohension'
         ? themeCategoryData.list.sort()
         : themeCategoryData.list.reverse();
 
     this.props.setThemes({
       themesList: {
         type: 'array',
-        value: sortedData.filter(item => item.type === sortType),
+        value:
+          sortType === 'cohension'
+            ? sortedData.filter(item => item.type === 'cohension')
+            : sortedData.filter(item => item.type !== 'cohension'),
       },
       commentary: { type: 'radio', value: commentary },
       sortType: { type: 'radio', value: sortType },
@@ -51,12 +54,16 @@ class Themes extends React.Component {
   };
 
   renderThemes = () => {
-    const { themesList } = this.state;
+    const { themesList, sortType } = this.state;
 
     return (
       <>
         {themesList
-          .filter(item => item.type === this.state.sortType)
+          .filter(item =>
+            sortType === 'cohension'
+              ? item.type === 'cohension'
+              : item.type !== 'cohension'
+          )
           .map((themeItem, index) => (
             <ThemeButton
               key={`theme_${index}`}

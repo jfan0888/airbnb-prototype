@@ -27,6 +27,12 @@ class RightSidebarContent extends React.Component {
     this.resetFilterSettings(this.props);
   }
 
+  resetAnalyze = () => {
+    const { analyzeStatus } = this.state;
+
+    if (analyzeStatus !== 'normal') this.setState({ analyzeStatus: 'normal' });
+  };
+
   resetFilterSettings = props => {
     const {
       perceptionSettingsValue,
@@ -73,19 +79,31 @@ class RightSidebarContent extends React.Component {
         return (
           <Perception
             settings={perceptionSettings}
-            setPerception={this.props.setPerception}
+            setPerception={(fieldName, value) => {
+              this.props.setPerception(fieldName, value);
+              this.resetAnalyze();
+            }}
           />
         );
       case 'Attributes':
         return (
           <Attributes
             settings={attributesSettings}
-            setAttributes={this.props.setAttributes}
+            setAttributes={(fieldName, value) => {
+              this.props.setAttributes(fieldName, value);
+              this.resetAnalyze();
+            }}
           />
         );
       case 'Themes':
         return (
-          <Themes settings={themeSettings} setThemes={this.props.setThemes} />
+          <Themes
+            settings={themeSettings}
+            setThemes={payload => {
+              this.props.setThemes(payload);
+              this.resetAnalyze();
+            }}
+          />
         );
       default:
         return null;
